@@ -1,0 +1,6 @@
+hgroup.content-header
+  h1 = @artist.name
+  == @artist.render_biography_jump(self)
+
+== @artist.artworks.render(self)
+== @artist.render_biography(self)

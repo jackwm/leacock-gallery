@@ -1,0 +1,9 @@
+table.table.table-bordered.table-striped.table-hover
+  thead
+    tr
+      th Key
+      th Preview
+      th Artworks
+      th Front page?
+  tbody
+    == @images.render(self)

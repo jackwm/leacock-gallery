@@ -1,0 +1,380 @@
+@import "bootstrap/bootstrap";
+@import "jquery.lightbox.css";
+
+// Bootstrap selective import
+//
+// @import "bootstrap/reset";
+// @import "bootstrap/variables";
+// @import "bootstrap/mixins";
+// @import "bootstrap/scaffolding";
+// @import "bootstrap/grid";
+// @import "bootstrap/layouts";
+// @import "bootstrap/type";
+// @import "bootstrap/tables";
+// @import "bootstrap/dropdowns";
+// @import "bootstrap/wells";
+// @import "bootstrap/navs";
+// @import "bootstrap/utilities"; // last
+
+@import "grisaille/core";
+@import "grisaille/mixins";
+@import "grisaille/blog";
+@import "grisaille/pages";
+
+
+/** Variables **/
+@frontHeight:           450px;
+@frontWidth:            800px;
+
+/* Theme colours */
+@colourAccent1:          #0a0a2a;
+@colourAccent2:          lighten(@blueDark, 50%);
+@colourPale:             #f7f7f7;
+@colourPaleHover:        darken(@colourPale, 3%);
+@colourPaleBorder:       #eee;
+@colourPaleBorderHover:  darken(@colourPaleBorder, 10%);
+
+/* Bootstrao overrides */
+@bodyBackground:                @white;
+@baseFontFamily:                "Garamond", Palatino, "Palatino Linotype",
+                                "URW Palladio L", "Book Antiqua", Baskerville,
+                                serif;
+@baseFontSize:                  12px;
+@baseLineHeight:                16px;
+@dropdownLinkColor:             @linkColor;
+@dropdownLinkColorHover:        @white;
+@dropdownLinkBackgroundHover:   @colourAccent2;
+@headingsFontFamily:            inherit;
+@linkColor:                     @colourAccent1;
+
+
+/** Elements **/
+
+
+/** Blocks **/
+
+#blk-banner {
+  .makeRow();
+  margin-top: 1em;
+  text-align: center;
+
+  small {
+    margin-right: 3em;
+    .pull-right();
+    .unemph();
+  }
+}
+
+#blk-main {
+  .makeRow();
+
+  ul, ol {
+    display: block;
+    text-align: center;
+  }
+}
+
+#blk-menu {
+  font-size: 145%;
+  .makeRow();
+
+  .dropdown-menu { font-size: 90%; }
+
+  /* Display drop-down on hover */
+  .nav .dropdown:hover .dropdown-menu {
+    display: inherit;
+    margin-top: 0;
+  }
+
+  a {
+    color: @textColor;
+    .dropdown-menu &:hover { color: @white; }
+
+    &:hover { color: @linkColorHover; }
+  }
+
+  ul { text-align: center; }
+}
+
+#blk-footer {
+  .opacity(40);
+  .makeRow();
+  margin-top: 3em;
+  .modal-footer;
+  .unemph();
+
+  ul {
+    display: inline;
+    list-style: none;
+    text-align: left;
+
+    li { margin-left: 0; }
+  }
+}
+
+/** Modules **/
+
+/* Content
+ *   used for bio/blurbs etc. that have a block of extended text with a jump
+ *   link at the top of the page
+ *
+ *  .content
+ *    the block of text
+ *  .content-column
+ *    similar to content, but without messing up the margins
+ *  .content-header
+ *    the header block including the jump link, detached from the content
+ *  .content-jump
+ *    the link at the top of the page to the text
+ */
+.content {
+  clear: both;
+  .makeRow();
+  margin-top: 1em;
+  .text();
+  .text-box();
+}
+.content-column {
+  .text();
+}
+.content-header {
+  margin-bottom: 1em;
+
+  h1 {
+    font-size: @baseFontSize * 1.8;
+    line-height: 1.5;
+  }
+}
+.content-jump {
+  .unemph();
+  &:hover { text-decoration: none; }
+}
+
+/* Details
+ *   for detail lists in a sidebar
+ *
+ *   .detail
+ *     a list of details
+ *   .detail-field
+ *     a field
+ *   .detail-header
+ *     a heading section
+ *   .detail-unlabeled
+ *     styles the detail list without field names
+ *   .detail-value
+ *     a value
+ */
+.detail {
+  .clearfix();
+  display: inline;
+  list-style-type: none;
+}
+.detail-field {
+  clear: both;
+  float: left;
+  font-weight: bold;
+  .text();
+  text-align: right;
+  width: 30%;
+}
+.detail-header {
+  font-size: @baseFontSize * 1.8;
+  line-height: 1.5;
+  margin-bottom: 1em;
+  text-align: center;
+}
+.detail-value {
+  float: right;
+  margin-left: 5%;
+  .text();
+  text-align: left;
+  width: 65%;
+}
+.detail-unlabeled {
+  .detail-field {
+    .hide-text();
+  }
+  .detail-value {
+    float: none;
+    margin-left: 0;
+    text-align: center;
+    width: 100%;
+  }
+  .tag-item {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* Pale
+ *   utility for pale background boxes
+ *
+ *   .pale
+ *     the basic colours
+ *   .pale-hover
+ *     the basics plus hover behaviour
+ */
+.pale {
+  background-color: @colourPale;
+  border-color: @colourPaleBorder;
+}
+.pale-hover {
+  .pale();
+  .transition(background-color linear .2s);
+  .transition(border-color linear .2s);
+  &:hover {
+    background-color: @colourPaleHover;
+    border-color: @colourPaleBorderHover;
+  }
+}
+
+/* Payment
+ *    Styles for the modal payment which is displayed when
+ *    someone clicks the buy this artwork button
+ */
+.payment {
+
+  .modal-body {
+
+    ul { 
+      list-style-type: none;
+      
+      li { 
+        display: block;
+        margin-bottom: 1.5em;
+      }
+    }
+  }
+}
+
+/* FIXME: Make this selector more specific */
+.popover-title {
+  display: none;
+}
+
+/* Product
+ *   for artwork images
+ *
+ *   .product-images
+ *     contains the images
+ *   .product-main
+ *     the primary view
+ *   .product-overlay
+ *     an empty element containing -sold and -main
+ *   .product-sold
+ *     an image to overlay on sold products
+ */
+@productDotColour: rgb(220,0,0);
+@productDotRadius: 10px;
+.product-images {
+  margin-bottom: 2em;
+  text-align: center;
+}
+.product-main {
+  img{
+    border: 6px solid;
+    .border-radius(3px);
+    .pale-hover();
+    .transition(border-color 0.3s linear);
+  }
+}
+.product-overlay {
+  display: inline-block;
+  position: relative;
+}
+.product-secondaries {
+  padding-top: 0.5em;
+}
+.product-secondary {
+  img{
+    border: 6px solid;
+    .border-radius(3px);
+    .pale-hover();
+    .transition(border-color 0.3s linear);
+    margin-bottom: 0.5em;
+    margin-right: 0.5em;
+    width: 30%;
+  }
+}
+.product-sold {
+  background-color: @productDotColour;
+  .border-radius(@productDotRadius);
+  bottom: 15px;
+  display: block;
+  #gradient > .directional(@productDotColour, darken(@productDotColour, 15%));
+  position: absolute;
+  right: 15px;
+  .square(@productDotRadius * 2);
+  z-index: 50;
+  .tile & {
+    bottom: 10px + @baseLineHeight * 1.5;
+    right: 10px;
+  }
+}
+
+/* Tags
+ *   little tag-like boxes around list items
+ *
+ *   .tag-list
+ *     an element containing tags
+ *   .tag-item
+ *     a tag
+ */
+.tag-list {
+  display: inline-block;
+  list-style-type: none;
+  margin: 0;
+}
+
+.tag-item {
+  border: solid 1px;
+  .border-radius(6px);
+  display: table;
+  margin-bottom: 0.6em;
+  margin-left: -4px; // this aligns the text which is offset by below padding
+  padding: 2px 4px;
+  .pale-hover();
+  &:hover { text-decoration: none; }
+}
+
+/* Tiles
+ *   used for image tiles
+ *
+ *   .tile
+ *     a generic tile
+ *   .tile-multi
+ *     a tile with a carousel of images inside
+ *   .tile-solo
+ *     a tile with a single image inside
+ */
+.tile {
+  margin-bottom: @baseLineHeight;
+  &:nth-of-type(3n+1) { clear: left; }
+
+  a {
+    border: 6px solid;
+    .border-radius(3px);
+    float: left;
+    height: 278px;
+    overflow: hidden;
+    .pale-hover();
+    position: relative;
+    .transition(border-color 0.3s linear);
+    width: 278px;
+    &:hover { text-decoration: none; }
+  }
+
+  h1 {
+    background: fadeout(@white, 50%);
+    bottom: 0;
+    color: @textColor;
+    font-size: @baseFontSize * 1.2;
+    line-height: @baseLineHeight * 1.5;
+    margin-bottom: 0;
+    position: absolute;
+    text-align: center;
+    .text-overflow();
+    width: 100%;
+    z-index: 2;
+  }
+}

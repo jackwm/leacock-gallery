@@ -1,0 +1,5 @@
+#js-front.carousel.slide.front-container
+  .carousel-inner
+    - @images.each_with_index do |image, index|
+      .item.front-item class=('active' if index.zero?)
+        img.front-img src=image.url(:front) alt=image.s3_key

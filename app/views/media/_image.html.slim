@@ -1,0 +1,12 @@
+tr class=image.state_class
+  td = image.s3_key
+  td == image.render_preview(self)
+  td == image.render_artworks_inline(self)
+  td
+     form.form-inline action=url(:media, :front)  method="post"
+      input type="hidden" name="_method" value="put"
+      input type="hidden" name="key" value=image.s3_key
+      .input-prepend
+        span.add-on
+          input type="checkbox" name="front" checked=image.front?
+        input.btn.btn-repad type="submit" value="save" disabled="#{'disabled' if image.missing?}"

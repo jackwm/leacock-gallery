@@ -1,0 +1,18 @@
+header.content-header
+  == @artwork.render_blurb_jump(self)
+
+article.span8.product-images
+  == @artwork.render_main_image(self)
+  == @artwork.render_secondary_images(self)
+
+aside.span4
+  h1.detail-header = @artwork.title
+  .detail.detail-unlabeled
+    == @artwork.render_artists(self)
+
+  dl.detail.detail-unlabeled
+    == @artwork.render_media_item(self)
+    == @artwork.render_dimensions_item(self)
+    == @artwork.render_purchase_items(self)
+
+== @artwork.render_blurb(self)

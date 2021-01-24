@@ -1,0 +1,53 @@
+doctype html
+html
+  head
+    meta charset="utf-8"
+    title = 'Leacock Gallery'
+    meta name="description" content=""
+    meta name="viewport" content="width=device-width,initial-scale=1"
+    meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"
+    == stylesheet_link_tag :application 
+    // link rel="alternate" type="application/atom+xml" title="Feed" href='/feed'
+
+  body.container
+
+    header#blk-banner
+      a.row href=url_for(:index)
+        hgroup.hide
+          h1 = config['site.title']
+          h2 = config['gallery.tagline']
+        img src="http://assets.leacockgallery.com/img/leacock_logo_scale.png"
+      a href="#"
+        small + join our mailing list
+
+    nav#blk-menu
+      ul.nav.nav-pills
+        li.span2
+          a href=url(:index) Home
+        li.dropdown.span3
+          a.dropdown-toggle data-toggle="dropdown" href="#" Gallery 
+          ul.dropdown-menu
+            li
+              a href=url(:artists, :index) Artist Gallery
+            li
+              a href=url(:artworks, :index) Complete Collection
+            li
+              a href=url(:artworks, :follies) Follies
+        li.span3
+          a href=url(:exhibitions, :index) Exhibitions
+        li.span2
+          a href=url(:posts, :index) News
+        li.span2
+          a href="#" Contact
+
+    section#blk-main role="main"
+      == yield
+
+    footer#blk-footer
+      ul 
+        li.span5
+          | Anna Leacock | #{config['site.title']} | ABN: #{config['gallery.abn']} 
+        li.span7
+          a.pull-right href='http://contraflo.ws' contraflows
+
+== javascript_include_tag :jquery, :application 

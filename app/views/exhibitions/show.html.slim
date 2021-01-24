@@ -1,0 +1,11 @@
+hgroup.span8.content-header
+  h1 = @exhibition.title
+
+article.span8.content-column
+  == @exhibition.render_blurb(self)
+
+aside.span4
+  == @exhibition.render_artists(self)
+  dl.detail
+    == @exhibition.render_dates(self)
+    == @exhibition.render_location(self)

@@ -1,0 +1,10 @@
+h1 Leacock Gallery
+p 
+  ' Hi #{current_user.name.split(' ').first}! To edit an
+  a href=url_for(:artists, :admin_index) artist
+  ' , upload an
+  a href=url_for(:artworks, :admin_index) artwork
+  '  or create an
+  a href=url_for(:exhibitions, :admin_index) exhibition
+  '  just click on the 'Manage data' tab above. Here you'll also be able
+    to have a look at all your current data as well.
